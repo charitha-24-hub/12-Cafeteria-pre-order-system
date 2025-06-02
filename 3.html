@@ -1,0 +1,61 @@
+</head>
+<body>
+
+  <div class="container">
+    <h2>Payment</h2>
+
+    <form action="process_payment.php" method="POST">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="amount">Amount (₹)</label>
+      <input type="number" id="amount" name="amount" required>
+
+      <div class="payment-methods">
+        <label>Select Payment Method:</label>
+        <input type="radio" id="card" name="method" value="card" checked>
+        <label for="card">Credit/Debit Card</label><br>
+
+        <input type="radio" id="upi" name="method" value="upi">
+        <label for="upi">UPI</label>
+      </div>
+
+      <div id="card-details">
+        <label for="cardnumber">Card Number</label>
+        <input type="text" id="cardnumber" name="cardnumber" maxlength="16">
+
+        <label for="expiry">Expiry Date</label>
+        <input type="month" id="expiry" name="expiry">
+
+        <label for="cvv">CVV</label>
+        <input type="password" id="cvv" name="cvv" maxlength="3">
+      </div>
+
+      <div id="upi-details" style="display: none;">
+        <label for="upiid">UPI ID</label>
+        <input type="text" id="upiid" name="upiid" placeholder="example@upi">
+      </div>
+
+      <button type="submit" class="btn">Pay Now</button>
+    </form>
+  </div>
+
+  <script>
+    const cardRadio = document.getElementById('card');
+    const upiRadio = document.getElementById('upi');
+    const cardDetails = document.getElementById('card-details');
+    const upiDetails = document.getElementById('upi-details');
+
+    cardRadio.addEventListener('change', () => {
+      cardDetails.style.display = 'block';
+      upiDetails.style.display = 'none';
+    });
+
+    upiRadio.addEventListener('change', () => {
+      cardDetails.style.display = 'none';
+      upiDetails.style.display = 'block';
+    });
+  </script>
+
+</body>
+</html>
